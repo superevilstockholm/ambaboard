@@ -15,6 +15,10 @@ const navLinks = [
         name: 'Features',
         route_name: 'features',
     },
+    {
+        name: 'Boards',
+        route_name: 'boards',
+    },
 ];
 </script>
 <template>

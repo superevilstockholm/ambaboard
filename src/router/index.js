@@ -52,7 +52,7 @@ const routes = [
     },
     {
         path: '/board/:id',
-        name: 'boards',
+        name: 'board',
         component: () => import('@/views/Protected/BoardView.vue'),
         meta: { requiresAuth: true },
     },

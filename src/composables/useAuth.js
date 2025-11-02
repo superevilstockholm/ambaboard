@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { auth } from '@/firebase/config';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 
 const user = ref(auth.currentUser);
 
@@ -14,10 +14,14 @@ const login = async (email, password) => {
     }
 };
 
-const signup = async (email, password) => {
+const signup = async (username, email, password) => {
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
-        user.value = res.user;
+        await updateProfile(res.user, {
+            displayName: username,
+        });
+        await signOut(auth);
+        user.value = null;
         return res.user;
     } catch (err) {
         throw err;

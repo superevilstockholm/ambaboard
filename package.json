@@ -12,6 +12,7 @@
     "@tabler/icons-vue": "^3.35.0",
     "bootstrap": "^5.3.8",
     "firebase": "^12.5.0",
+    "sweetalert2": "^11.26.3",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"
   },
