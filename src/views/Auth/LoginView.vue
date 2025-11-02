@@ -35,40 +35,46 @@ const handleLogin = async () => {
 };
 </script>
 <template>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow-sm p-4" style="width: 400px">
-            <h3 class="mb-4 text-center">Login</h3>
-            <form @submit.prevent="handleLogin">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><IconAt /></span>
-                        <input type="email" id="email" class="form-control" v-model="email" placeholder="you@example.com" required />
+    <section class="vh-100">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-auto">
+                    <div class="card shadow-sm p-4 my-4" style="width: 400px">
+                        <h3 class="mb-4 text-center">Login</h3>
+                        <form @submit.prevent="handleLogin">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><IconAt /></span>
+                                    <input type="email" id="email" class="form-control" v-model="email" placeholder="you@example.com" required />
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><IconLock /></span>
+                                    <input type="password" id="password" class="form-control" v-model="password" placeholder="••••••••" required />
+                                </div>
+                            </div>
+                            <button class="btn btn-primary w-100" type="submit" :disabled="loading">
+                                <span v-if="loading">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    Logging in...
+                                </span>
+                                <span v-else>Login</span>
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <div class="d-flex align-items-center gap-1">
+                                Belum punya akun?
+                                <router-link :to="{ name: 'signup' }">Daftar</router-link>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><IconLock /></span>
-                        <input type="password" id="password" class="form-control" v-model="password" placeholder="••••••••" required />
-                    </div>
-                </div>
-                <button class="btn btn-primary w-100" type="submit" :disabled="loading">
-                    <span v-if="loading">
-                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        Logging in...
-                    </span>
-                    <span v-else>Login</span>
-                </button>
-            </form>
-            <div class="text-center mt-3">
-                <div class="d-flex align-items-center gap-1">
-                    Belum punya akun?
-                    <router-link :to="{ name: 'signup' }">Daftar</router-link>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <style scoped>
 /* Styles */
