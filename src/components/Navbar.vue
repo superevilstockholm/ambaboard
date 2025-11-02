@@ -1,10 +1,22 @@
 <script setup>
 import { useRoute } from 'vue-router';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 // Tablser icons
 import { IconBrand4chan } from '@tabler/icons-vue';
 
 const route = useRoute();
+
+const width = ref(window.innerWidth);
+const updateWidth = () => {
+    width.value = window.innerWidth;
+};
+onMounted(() => {
+    window.addEventListener('resize', updateWidth);
+});
+onUnmounted(() => {
+    window.removeEventListener('resize', updateWidth);
+});
 
 const navLinks = [
     {
@@ -22,9 +34,9 @@ const navLinks = [
 ];
 </script>
 <template>
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top" :class="width < 992 ? 'backdrop-blur-10px' : ''">
         <div class="container">
-            <div class="w-100 p-0 mx-0 my-1 d-lg-flex rounded-pill" style="backdrop-filter: blur(10px)">
+            <div class="w-100 p-0 m-0 py-lg-1 px-lg-4 mt-lg-1 d-lg-flex rounded-lg-pill" :class="width >= 992 ? 'backdrop-blur-10px' : ''">
                 <div class="d-inline-block w-lg-25 d-lg-flex justify-content-lg-start">
                     <RouterLink class="navbar-brand d-flex flex-column gap-05 fs-6" :to="{ name: 'index' }">
                         <span class="fw-bold d-flex align-items-center gap-1">
@@ -44,6 +56,15 @@ const navLinks = [
                             <RouterLink class="nav-link" :class="route.name === item.route_name ? 'active' : ''" aria-current="page" :to="{ name: item.route_name }">{{ item.name }}</RouterLink>
                         </li>
                     </ul>
+                    <hr />
+                    <ul class="navbar-nav fs-09 gap-lg-2 d-flex flex-row align-items-center gap-3 d-lg-none text-center">
+                        <li class="nav-item w-100">
+                            <RouterLink class="nav-link" :to="{ name: 'login' }">Log in</RouterLink>
+                        </li>
+                        <li class="nav-item w-100">
+                            <RouterLink class="nav-link border border-1 px-3 py-1 sign-in" style="background-color: rgba(var(--bs-tertiary-bg-rgb), 0.5)" :to="{ name: 'signup' }">Sign up</RouterLink>
+                        </li>
+                    </ul>
                 </div>
                 <div class="d-none d-lg-flex w-lg-25 justify-content-end fs-09">
                     <ul class="navbar-nav fs-09 align-items-center gap-2">
@@ -51,7 +72,7 @@ const navLinks = [
                             <RouterLink class="nav-link" :to="{ name: 'login' }">Log in</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <RouterLink class="nav-link border border-1 px-3 py-1 sign-in" style="background-color: rgba(var(--bs-tertiary-bg-rgb), 0.5);" :to="{ name: 'signup' }">Sign up</RouterLink>
+                            <RouterLink class="nav-link border border-1 px-3 py-1 sign-in" style="background-color: rgba(var(--bs-tertiary-bg-rgb), 0.5)" :to="{ name: 'signup' }">Sign up</RouterLink>
                         </li>
                     </ul>
                 </div>
@@ -65,9 +86,12 @@ const navLinks = [
     gap: 0.125rem;
 }
 .nav-link {
-    transition: all 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
 }
 .sign-in:hover {
     background-color: rgba(var(--bs-tertiary-bg-rgb), 0.75) !important;
+}
+.backdrop-blur-10px {
+    backdrop-filter: blur(10px);
 }
 </style>

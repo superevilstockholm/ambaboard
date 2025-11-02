@@ -1,6 +1,7 @@
 import { ref } from 'vue';
-import { auth } from '@/firebase/config';
+import { auth, db } from '@/firebase/config';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 
 const user = ref(auth.currentUser);
 
@@ -19,6 +20,12 @@ const signup = async (username, email, password) => {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(res.user, {
             displayName: username,
+        });
+        await setDoc(doc(db, 'users', res.user.uid), {
+            uid: res.user.uid,
+            username: username,
+            email: email,
+            createdAt: new Date().toISOString()
         });
         await signOut(auth);
         user.value = null;

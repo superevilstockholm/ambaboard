@@ -30,6 +30,9 @@
     .w-lg-75 {
         width: 75% !important;
     }
+    .rounded-lg-pill {
+        border-radius: var(--bs-border-radius-pill) !important;
+    }
 }
 
 html[data-bs-theme="dark"] html, html[data-bs-theme="dark"] body {
