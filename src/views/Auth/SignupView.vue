@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router';
 import { useAuth } from '@/composables/useAuth';
 import Swal from 'sweetalert2';
 // Tabler Icons
-import { IconAt, IconLock } from '@tabler/icons-vue';
 const { signup } = useAuth();
 const router = useRouter();
 const username = ref('');
@@ -32,7 +31,7 @@ const handleSignup = async () => {
             timer: 1800,
             showConfirmButton: false,
         });
-        router.push({ name: 'login' });
+        router.push({ name: 'boards' });
     } catch (err) {
         Swal.fire({
             icon: 'error',
@@ -48,36 +47,33 @@ const handleSignup = async () => {
 <template>
     <section class="vh-100">
         <div class="container h-100">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-auto">
-                    <div class="card shadow-sm p-4" style="width: 400px">
-                        <h3 class="mb-4 text-center">Sign Up</h3>
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div class="card shadow-sm p-4 my-4">
+                        <h3 class="text-center">Hi There</h3>
+                        <p class="mb-4 text-center"></p>
                         <form @submit.prevent="handleSignup">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <div class="input-group">
-                                    <span class="input-group-text">@</span>
                                     <input type="text" id="username" class="form-control" v-model="username" placeholder="yourname" required />
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><IconAt /></span>
                                     <input type="email" id="email" class="form-control" v-model="email" placeholder="you@example.com" required />
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><IconLock /></span>
                                     <input type="password" id="password" class="form-control" v-model="password" placeholder="••••••••" required />
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><IconLock /></span>
                                     <input type="password" id="confirmPassword" class="form-control" v-model="confirmPassword" placeholder="••••••••" required />
                                 </div>
                             </div>

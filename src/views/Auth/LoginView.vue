@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router';
 import { useAuth } from '@/composables/useAuth';
 import Swal from 'sweetalert2';
 // Tabler Icons
-import { IconAt, IconLock } from '@tabler/icons-vue';
 const { login } = useAuth();
 const router = useRouter();
 const email = ref('');
@@ -38,22 +37,21 @@ const handleLogin = async () => {
     <section class="vh-100">
         <div class="container h-100">
             <div class="row h-100 justify-content-center align-items-center">
-                <div class="col-auto">
-                    <div class="card shadow-sm p-4 my-4" style="width: 400px">
-                        <h3 class="mb-4 text-center">Login</h3>
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div class="card shadow-sm p-4 my-4">
+                        <h3 class="text-center mb-1">Welcome Back</h3>
+                        <p class="mb-4 text-muted text-center fs-09">Silahkan login untuk melanjutkan</p>
                         <form @submit.prevent="handleLogin">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><IconAt /></span>
-                                    <input type="email" id="email" class="form-control" v-model="email" placeholder="you@example.com" required />
+                                    <input type="email" id="email" class="form-control" v-model="email" placeholder="johndoe12@example.com" autocomplete="email" required />
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><IconLock /></span>
-                                    <input type="password" id="password" class="form-control" v-model="password" placeholder="••••••••" required />
+                                    <input type="password" id="password" class="form-control" v-model="password" placeholder="••••••••" autocomplete="current-password" required />
                                 </div>
                             </div>
                             <button class="btn btn-primary w-100" type="submit" :disabled="loading">
@@ -64,8 +62,8 @@ const handleLogin = async () => {
                                 <span v-else>Login</span>
                             </button>
                         </form>
-                        <div class="text-center mt-3">
-                            <div class="d-flex align-items-center gap-1">
+                        <div class="mt-3 fs-09">
+                            <div class="d-flex align-items-center justify-content-center gap-1">
                                 Belum punya akun?
                                 <router-link :to="{ name: 'signup' }">Daftar</router-link>
                             </div>

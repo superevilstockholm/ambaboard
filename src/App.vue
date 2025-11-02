@@ -2,10 +2,10 @@
 import { useRoute } from 'vue-router';
 import Navbar from '@/components/Navbar.vue';
 
-const router = useRoute();
+const route = useRoute();
 </script>
 <template>
-    <Navbar v-if="router.meta?.showNavbar ?? true" />
+    <Navbar v-if="route.meta?.showNavbar ?? false" />
     <main>
         <RouterView />
     </main>
