@@ -1,12 +1,12 @@
-<script setup>
-// Script
+<script>
+// Scripts
 </script>
 <template>
     <section>
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>Index</h1>
+                    <h1>Boards</h1>
                 </div>
             </div>
         </div>
